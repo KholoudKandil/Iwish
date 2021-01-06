@@ -1,3 +1,9 @@
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,6 +21,10 @@ public class Iwish1 extends javax.swing.JFrame {
      */
     public Iwish1() {
         initComponents();
+        final Toolkit toolkit = Toolkit.getDefaultToolkit();
+final Dimension screenSize = toolkit.getScreenSize();
+final int XPOSITION = (screenSize.width - DialogAvailableItem.getWidth())/4 ;
+final int YPOSITION  = (screenSize.height - DialogAvailableItem.getHeight())/4 ;
     }
 
     /**
@@ -295,12 +305,22 @@ public class Iwish1 extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        listFriends.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listFriendsValueChanged(evt);
+            }
+        });
         scrollPanelFriends.setViewportView(listFriends);
 
         listFriendWish.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+        });
+        listFriendWish.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listFriendWishValueChanged(evt);
+            }
         });
         scrollPanelFriendWish.setViewportView(listFriendWish);
 
@@ -340,7 +360,7 @@ public class Iwish1 extends javax.swing.JFrame {
                         .addGroup(panelFriendsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelFriendWishList)
                             .addComponent(scrollPanelFriendWish, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         panelFriendsLayout.setVerticalGroup(
             panelFriendsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,7 +375,7 @@ public class Iwish1 extends javax.swing.JFrame {
                     .addComponent(scrollPanelFriends))
                 .addGap(18, 18, 18)
                 .addComponent(btnRemoveFriend)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(labelNewFriend)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnFriendEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -402,7 +422,7 @@ public class Iwish1 extends javax.swing.JFrame {
                 .addGroup(panelMyWishListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelAvailableItems)
                     .addComponent(scrollPanelAvailableItems, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
         panelMyWishListLayout.setVerticalGroup(
             panelMyWishListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -418,7 +438,7 @@ public class Iwish1 extends javax.swing.JFrame {
                         .addGap(48, 48, 48)
                         .addComponent(btnRemoveItem))
                     .addComponent(scrollPanelAvailableItems, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         mainPane.addTab("My Wishlist", panelMyWishList);
@@ -434,11 +454,11 @@ public class Iwish1 extends javax.swing.JFrame {
         panelFriendRequests.setLayout(panelFriendRequestsLayout);
         panelFriendRequestsLayout.setHorizontalGroup(
             panelFriendRequestsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPanelFriendRequests, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+            .addComponent(scrollPanelFriendRequests, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
         );
         panelFriendRequestsLayout.setVerticalGroup(
             panelFriendRequestsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPanelFriendRequests, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+            .addComponent(scrollPanelFriendRequests, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
         );
 
         mainPane.addTab("Friend Requests", panelFriendRequests);
@@ -447,11 +467,11 @@ public class Iwish1 extends javax.swing.JFrame {
         panelNotifications.setLayout(panelNotificationsLayout);
         panelNotificationsLayout.setHorizontalGroup(
             panelNotificationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 315, Short.MAX_VALUE)
+            .addGap(0, 469, Short.MAX_VALUE)
         );
         panelNotificationsLayout.setVerticalGroup(
             panelNotificationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 347, Short.MAX_VALUE)
+            .addGap(0, 378, Short.MAX_VALUE)
         );
 
         mainPane.addTab("Gifts Notifications", panelNotifications);
@@ -480,7 +500,7 @@ public class Iwish1 extends javax.swing.JFrame {
             .addGroup(regsPaneLayout.createSequentialGroup()
                 .addGroup(regsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(regsPaneLayout.createSequentialGroup()
-                        .addContainerGap(68, Short.MAX_VALUE)
+                        .addContainerGap(222, Short.MAX_VALUE)
                         .addComponent(btnNewLog))
                     .addGroup(regsPaneLayout.createSequentialGroup()
                         .addGap(87, 87, 87)
@@ -499,7 +519,7 @@ public class Iwish1 extends javax.swing.JFrame {
         regsPaneLayout.setVerticalGroup(
             regsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(regsPaneLayout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
+                .addContainerGap(139, Short.MAX_VALUE)
                 .addComponent(txtFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtLastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -542,7 +562,7 @@ public class Iwish1 extends javax.swing.JFrame {
                     .addComponent(btnLogin)
                     .addComponent(txtPwLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtUsrLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
         loginPaneLayout.setVerticalGroup(
             loginPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -555,7 +575,7 @@ public class Iwish1 extends javax.swing.JFrame {
                 .addComponent(btnLogin)
                 .addGap(18, 18, 18)
                 .addComponent(btnNewRegs)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         getContentPane().add(loginPane, "card2");
@@ -576,6 +596,30 @@ public class Iwish1 extends javax.swing.JFrame {
         DialogFriendItem.setBounds(100, 100, 500, 500);
         DialogFriendItem.setVisible(true);
     }//GEN-LAST:event_btnRemoveFriendActionPerformed
+
+    private void listFriendsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listFriendsValueChanged
+        // TODO add your handling code here:
+        DefaultListModel friendWishList= new DefaultListModel();
+        
+        String friendName = listFriends.getSelectedValue();
+        
+        //write code to fill friendWishList with the items of (friendName) 
+        
+        listFriendWish.setModel(friendWishList);
+    }//GEN-LAST:event_listFriendsValueChanged
+
+    private void listFriendWishValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listFriendWishValueChanged
+        // TODO add your handling code here:
+        String prodName = listFriends.getSelectedValue();
+         // fill the comonents of dialogbox with the details of (prodName)
+        final Toolkit toolkit = Toolkit.getDefaultToolkit();
+        final Dimension screenSize = toolkit.getScreenSize();
+        final int XPOSITION = (screenSize.width - DialogAvailableItem.getWidth())/4 ;
+        final int YPOSITION  = (screenSize.height - DialogAvailableItem.getHeight())/4 ;
+        DialogAvailableItem.setLocation(XPOSITION, YPOSITION);
+        DialogAvailableItem.setSize(500, 500);
+        DialogAvailableItem.show();
+    }//GEN-LAST:event_listFriendWishValueChanged
 
     /**
      * @param args the command line arguments
